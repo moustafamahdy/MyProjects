@@ -1,0 +1,29 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Add Entery
+{% endblock %}
+
+{% block body %}
+    {% if existing %}
+        <h1>Editing {{ entry }}</h1>
+
+      
+    {% else %}
+        <h1>New Entry</h1>
+    {% endif %}
+
+    {% if existing %}
+        <div role="alert">
+            This Entry is already exist if you want to view it or edit it <a href="wiki/ {{ entry }}">{{ entry }}</a>
+        </div>
+    {% endif %}
+    <div>
+        <form action="{% url 'addpage' %}" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit">
+            
+        </form>
+    </div>
+{% endblock %}
